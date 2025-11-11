@@ -27,5 +27,5 @@
         msg:
           - "Host: {{ inventory_hostname }}"
           - "Uptime: {{ uptime_out.stdout }}"
-          - "PM2 status: {{ pm2_out.stdout }}"
+          - "{{ pm2_out.stdout }}"
           - "Disk usage:\n{{ disk_out.stdout_lines | join('\n') }}"
