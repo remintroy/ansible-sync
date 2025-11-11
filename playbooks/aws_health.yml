@@ -20,6 +20,6 @@
     - name: Show results
       ansible.builtin.debug:
         msg:
-          - "✅ Host: {{ inventory_hostname }}"
-          - "🕒 Uptime: {{ uptime_out.stdout }}"
-          - "💾 Disk usage:\n{{ disk_out.stdout_lines | join('\n') }}"
+          - "Host: {{ inventory_hostname }}"
+          - "Uptime: {{ uptime_out.stdout }}"
+          - "Disk usage:\n{{ disk_out.stdout_lines | join('\n') }}"
