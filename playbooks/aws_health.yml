@@ -16,10 +16,16 @@
       ansible.builtin.command: df -h /
       register: disk_out
       changed_when: false
+      
+    - name: Ls dirs
+      ansible.builtin.command: ls -la
+      register: ls_out
+      changed_when: false
 
     - name: Show results
       ansible.builtin.debug:
         msg:
           - "Host: {{ inventory_hostname }}"
           - "Uptime: {{ uptime_out.stdout }}"
+          - "LS: {{ ls_out.stdout }}"
           - "Disk usage:\n{{ disk_out.stdout_lines | join('\n') }}"
