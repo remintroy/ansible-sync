@@ -1,0 +1,25 @@
+---
+- name: Basic AWS instance health check
+  hosts: aws_instances
+  gather_facts: yes
+
+  tasks:
+    - name: Ping test (check SSH + Python)
+      ansible.builtin.ping:
+
+    - name: Check uptime
+      ansible.builtin.command: uptime
+      register: uptime_out
+      changed_when: false
+
+    - name: Check disk usage
+      ansible.builtin.command: df -h /
+      register: disk_out
+      changed_when: false
+
+    - name: Show results
+      ansible.builtin.debug:
+        msg:
+          - "✅ Host: {{ inventory_hostname }}"
+          - "🕒 Uptime: {{ uptime_out.stdout }}"
+          - "💾 Disk usage:\n{{ disk_out.stdout_lines | join('\n') }}"
